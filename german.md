@@ -2,7 +2,7 @@
 
 ## Autoren
 * Menzel, Erik
-* Tornack. Frank <linux@dreamofjapan.de>
+* Tornack, Frank <linux@dreamofjapan.de>
 
 
 ## Problemstellung
