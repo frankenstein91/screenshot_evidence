@@ -41,3 +41,6 @@ Die Erstellung eines neuen Containerformates für Bildschrimaufnahmen ist notwen
 |  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                     |
  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 ```
+
+### Sequenznummer
+Die Sequenznummer ist ein Zähler der getätigten Bildschirmfoto seit Programmstart. Dieser Zähler kann verwendet werden, um undokumentiert gelöschte Screenshots zu erkennen.
