@@ -18,6 +18,10 @@ Die Erstellung eines neuen Containerformates für Bildschrimaufnahmen ist notwen
 ```
  ______________________________________
 | Dateiheader                          |
+|  _______________                     |
+| |   Sequenz-    |                    |
+| |    nummer     |                    |
+|  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                     |
 |  _______________    _______________  |
 | |  Bildschirm-  |  |   Liste der   | |
 | |      foto     |  |   genutzten   | |
