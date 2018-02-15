@@ -11,7 +11,7 @@ With current technologies in computer science it is not possible to check the tr
 The content presented may differ greatly from the actual circumstances. 
 As an example, a remote desktop connection could be used as a background for a browser window, so the accessibility of the website from a particular host cannot be verified in this example.
 
-## solution
+## approach
 
 The creation of a new container format for screen shots is necessary to ensure the traceability of screenshots.
 ```
