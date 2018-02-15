@@ -12,7 +12,7 @@ Die dargestellten Inhalte können von den eigentlichen Sachverhalten stark abwei
 Als Beispiel könnte eine Remote-Desktop-Verbindung als Hintergrund für ein Browserfenster genutzt werden, somit kann die Erreichbarkeit der Website von einem bestimmten Host in diesem Beispiel nicht nachgewiesen werden.
 
 
-## Lösung
+## Lösungsansatz
 
 Die Erstellung eines neuen Containerformates für Bildschrimaufnahmen ist notwendig, um eine Nachweisbarkeit von Screenshots sicherzustellen.
 ```
