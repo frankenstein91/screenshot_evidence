@@ -44,3 +44,9 @@ Die Erstellung eines neuen Containerformates für Bildschrimaufnahmen ist notwen
 
 ### Sequenznummer
 Die Sequenznummer ist ein Zähler der getätigten Bildschirmfoto seit Programmstart. Dieser Zähler kann verwendet werden, um undokumentiert gelöschte Screenshots zu erkennen.
+
+### Bildschirmfoto
+Das Bildschirmfoto sollte im Format PNG nach RFC2083 gespeichert werden. Es handelt sich hierbei um ein verlustfreies Grafikformat.
+Durch ein verlustfreies Speicherverfahren kann sichergestellt werden, dass Grafikartefakte wirklich aus der originalen Anzeige stammen.
+Das Containerformat sollte auch andere Verfahren zur Speicherung von Grafiken unterstützen, die Software sollte allerdings bei verlustbehafteter Speicherung eine Warnung ausgeben.
+Durch eine aktive Warnung vor möglichen Verlusten in der Grafik kann der Betrachter auf eine ungenaue Abbildung aufmerksam gemacht werden.
