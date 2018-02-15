@@ -43,3 +43,9 @@ The creation of a new container format for screen shots is necessary to ensure t
 
 ### sequence number
 The sequence number is a counter of the screenshot taken since program start. This counter can be used to detect undocumented deletions of screenshots.
+
+### screenshot
+The screenshot should be saved in PNG format according to RFC2083. This is a lossless graphic format.
+A lossless storage procedure ensures that graphic artifacts are actually taken from the original display.
+The container format should also support other methods of storing images, but the software should issue a warning if it is a lossy format.
+By an active warning of possible losses in the graphic, the viewer can be made aware of an inaccurate image.
