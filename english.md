@@ -12,7 +12,7 @@ But one thing is currently not possible with screenshots: using them as a proof 
 
 ## The problem
 The problem is, that you can't proof, that you screenshot is real. 
-Depending on what you do, the presented content may differ greatly from the actuel circumstances. With conventional pictures, it's easy to zoom in and look at how the image noise differ from area to area. 
+Depending on what you do, the presented content may differ greatly from the actual circumstances. With conventional pictures, it's easy to zoom in and look at how the image noise differ from area to area. 
 But that's not possible with screenshots, because all content is produced by a machine. There is no image noise at all. That why it's not possible to proof a pictures authenticity just with the picture itself.
 
 As a second problem someone can't tell, on wich machine the screenshot was actually taken, and when. 
