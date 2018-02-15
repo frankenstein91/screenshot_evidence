@@ -17,6 +17,10 @@ The creation of a new container format for screen shots is necessary to ensure t
 ```
  ______________________________________
 | file header                          |
+|  _______________                     |
+| |   sequence    |                    |
+| |    number     |                    |
+|  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                     |
 |  _______________    _______________  |
 | |   Picture of  |  |    List of    | |
 | |     Screen    |  |  DNS servers  | |
