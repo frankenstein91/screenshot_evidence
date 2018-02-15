@@ -40,3 +40,6 @@ The creation of a new container format for screen shots is necessary to ensure t
 |  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                     |
  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 ```
+
+### sequence number
+The sequence number is a counter of the screenshot taken since program start. This counter can be used to detect undocumented deletions of screenshots.
