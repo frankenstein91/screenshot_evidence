@@ -74,13 +74,12 @@ Somit können undokumentiert gelöschte Bildschirmfotos erkannt werden.
 Es gibt aber ein Problem an dieser Lösung.
 ## Das Problem am ersten Lösungsansatz
 Mit den aktuell herkömmlichen Verfahren der Kryptografie (insbesondere der asymmetrischen) ist es problemlos möglich, 
-sichere Signaturen dergestalt zu erstellen, dass ein Empfänger den unveränderten Empfang von Daten sicherzustellen, 
-insofern die Daten vom Empfänger signiert wurden. Das funktioniert deshalb, weil durch Verfahren sichergestellt wird, 
-dass das Signieren nahezu unmöglich ist, wenn man nicht im Besitzt des privaten Schlüssels ist. Andersherum ist die 
-Kenntnis des privaten Schlüssels für das verifizieren nicht notwendig.
-Das Problem für die Bildschirmfotos besteht darin, dass wir nicht nur sicherstellen wollen, dass der Signierer im 
+sichere Signaturen dergestalt zu erstellen, dass ein Empfänger den unveränderten Empfang von Daten sicherstellen kann, 
+insofern die Daten vom Empfänger signiert wurden. Das funktioniert deshalb, weil das Signieren nahezu unmöglich ist, wenn man nicht im Besitzt des privaten Schlüssels ist. 
+Andersherum ist die Kenntnis des privaten Schlüssels für das Verifizieren nicht notwendig.
+Das Problem für die Bildschirmfotos besteht darin, dass wir nicht nur sicherstellen wollen, dass der Signierende im 
 Besitzt des privaten Schlüssels ist. Das wollen wir auch sicherstellen, entsprechend ist ein Feld für die Signatur nötig. 
 Doch wir wollen außerdem sicherstellen, dass das Bildschirmfoto (und die zugehörigen Metadaten) auch vom Besitzer des 
 privaten Schlüssels nicht nachträglich geändert wurde. Denn sonst könnte der Besitzer des privaten Schlüssels das Bild 
-bzw. die Metadaten fälschen, und anschließend unerkannt einfach neu signieren.
+bzw. die Metadaten verändern, und anschließend unerkannt einfach neu signieren.
 Natürlich kann so etwas von der erstellenden Software verboten werden, doch damit ist eine Fälschung ja nicht ausgeschlossen.
