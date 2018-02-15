@@ -1,19 +1,36 @@
 # Digital screenshots with proof of authenticity
 
-## Authors:
+## Authors
 * Menzel, Erik
 * Tornack, Frank <linux@dreamofjapan.de>
+* Lehner, Tim
 
+## Introduction
+Nowadays there is no problem, when you want to save an image of that, what's currently displayed on your display(s).
+Screenshots are often used to document what was done, to explain something for other people, or other use cases.
+But one thing is currently not possible with screenshots: using them as a proof of something.
 
-## problem definition
+## The problem
+The problem is, that you can't proof, that you screenshot is real. Depending on what you do, the presented 
+content may differ greatly from the actuel circumstances. With conventional pictures, it's easy to zoom in and 
+look at how the image noise differ from area to area. But that's not possible with screenshots, because all content 
+is produced by a machine. There is no image noise at all. That why it's not possible to proof a pictures authenticity 
+just with the picture itself.
 
-With current technologies in computer science it is not possible to check the truthfulness and content of a digitally generated screenshot. 
-The content presented may differ greatly from the actual circumstances. 
-As an example, a remote desktop connection could be used as a background for a browser window, so the accessibility of the website from a particular host cannot be verified in this example.
+As a second problem someone can't tell, on wich machine the screenshot was actually taken, and when. 
+That's really important since Remote-Desktop-Sessions are a very common tool.
 
-## approach
+# First approach
+As I tried to make clear in the problem definition section, the problem has two different parts. We will first look at 
+each separate part, but things interfer, you should not see them as two different things at all. For both parts we 
+need to save meta data, wich are currently not saved with a screenshot. So we need a new container format for our 
+proof of authenticity.
 
-The creation of a new container format for screen shots is necessary to ensure the traceability of screenshots.
+To proof, when and where the screenshot was taken, following data should be saved:
+* Network configuration. IP and MAC addresses, hostnames. Also used DNS Servers can be useful.
+* List of currently open windows. Because we want to proof, that we are (/not) in a Remote-Desktop-Session.
+* Current time. For example Unix timestamp with time zone.
+
 ```
  ______________________________________
 | file header                          |
@@ -41,11 +58,25 @@ The creation of a new container format for screen shots is necessary to ensure t
  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 ```
 
-### sequence number
-The sequence number is a counter of the screenshot taken since program start. This counter can be used to detect undocumented deletions of screenshots.
+The second problem is the proof, that the content of the screenshot hasn't changed since the screenshot was taken. 
+That seems to be really easy, we just need a checksum.
 
-### screenshot
-The screenshot should be saved in PNG format according to RFC2083. This is a lossless graphic format.
+Also, the screenshot should be saved in PNG format according to RFC2083. This is a lossless graphic format.
 A lossless storage procedure ensures that graphic artifacts are actually taken from the original display.
 The container format should also support other methods of storing images, but the software should issue a warning if it is a lossy format.
 By an active warning of possible losses in the graphic, the viewer can be made aware of an inaccurate image.
+
+We should also mention, that a sequence number (counter starting with program start) is useful, 
+to detect undocumented deletions of screenshots.
+
+But there's a problem with our first approach
+
+## Problem of our first approach
+With current methods of cryptography, it's no problem to create secure signatures, with wich a receiver can validate 
+that data was not modified since signature. That works because people developed methods, so that signing data is almost 
+impossible, if you don't know the private key. Inversely the private key is not needed for validating the signature. 
+
+The problem with our screenshots is, that we want not only to be sure, that the signature was createt with a certain private key, 
+we need also a proof of the fact, that the image (and meta data) hasn't changed since the screenshot was taken, not only since signature. 
+Otherwise somebody could modify a screenshot and would just sign it again.
+Of course you can prevent that with software, but that would be just a impediment, you would not make it impossible.
