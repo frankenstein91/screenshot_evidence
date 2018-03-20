@@ -1,3 +1,5 @@
+import uuid
+
 from functions import *
 import mss
 from PIL import Image
@@ -15,6 +17,7 @@ def TakeScreenShot():
         HostsFile = GetHostsFile()
         root = ET.Element("screenshot_evidence")
         ET.SubElement(root,"HostName").text = HostName
+        ET.SubElement(root,"PicID").text = str(uuid.uuid1()).replace("-","")
         xml_Times = ET.SubElement(root, "ExtTimes",{"timezone": TimeZone})
         for server, EXTtime in Times.items():
             ET.SubElement(xml_Times, "Time",{"Server": server}).text = str(EXTtime)
