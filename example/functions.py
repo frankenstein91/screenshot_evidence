@@ -5,7 +5,7 @@ from python_hosts import Hosts, HostsEntry
 
 def getTimes():
     c = ntplib.NTPClient()
-    servers = ["meinekiste.de", "zepto.mcl.gg", "shout.ovh"]
+    servers = ["meinekiste.de", "zepto.mcl.gg", "shout.ovh", "time-a-g.nist.gov", "time-b-g.nist.gov", "time-a-wwv.nist.gov", "time-a-b.nist.gov", "0.pool.ntp.org"]
     timeanswers = {}
     timeinfo = {}
     for server in servers:
