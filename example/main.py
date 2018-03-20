@@ -1,10 +1,13 @@
+import io
 import uuid
 import hmac, hashlib, base64
 from functions import *
 import mss
 from PIL import Image
 import xml.etree.cElementTree as ET
+from bs4 import BeautifulSoup
 version = "Test 0.1"
+
 
 def TakeScreenShot():
     with mss.mss() as sct:
@@ -43,9 +46,17 @@ def TakeScreenShot():
         for InterfaceName, InterfaceMeta in NetInfo.items():
             ThisInterface = ET.SubElement(XML_NetWorkHarware, "Interface",{"Name": InterfaceName, "MAC": InterfaceMeta["mac"]})
 
-        tree = ET.ElementTree(root)
-        tree.write("test.xml")
+
         img = Image.frombytes('RGB', sct_img.size, sct_img.rgb)
-        img.save("test.png")
+        imgByteArr = io.BytesIO()
+        img.save(imgByteArr, format='PNG')
+        #imgByteArr.getvalue()
+        ET.SubElement(root, "Pic_Checksum", {"Typ": "MD5"}).text = hashlib.md5(imgByteArr.getvalue()).hexdigest()
+        ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA512"}).text = hashlib.sha512(imgByteArr.getvalue()).hexdigest()
+        ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA3_512"}).text = hashlib.sha3_512(imgByteArr.getvalue()).hexdigest()
+        ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA256"}).text = hashlib.sha256(imgByteArr.getvalue()).hexdigest()
+        with open("test.xml", "w") as f:
+            f.write(BeautifulSoup(ET.tostring(root), "xml").prettify())
+
 
 TakeScreenShot()
