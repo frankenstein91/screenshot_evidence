@@ -7,7 +7,9 @@ from PIL import Image
 import xml.etree.cElementTree as ET
 from bs4 import BeautifulSoup
 version = "Test 0.1"
-
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 def TakeScreenShot():
     with mss.mss() as sct:
@@ -45,7 +47,12 @@ def TakeScreenShot():
         XML_NetWorkHarware = ET.SubElement(root, "NetWorkHarware")
         for InterfaceName, InterfaceMeta in NetInfo.items():
             ThisInterface = ET.SubElement(XML_NetWorkHarware, "Interface",{"Name": InterfaceName, "MAC": InterfaceMeta["mac"]})
-
+            if "ipV4" in InterfaceMeta:
+                for ipV4 in InterfaceMeta["ipV4"]:
+                    ET.SubElement(ThisInterface,"address", {"Typ": "ipV4", "Netmask": ipV4["netmask"]}).text = ipV4["addr"]
+            if "ipV6" in InterfaceMeta:
+                for ipV6 in InterfaceMeta["ipV6"]:
+                    ET.SubElement(ThisInterface,"address", {"Typ": "ipV6"}).text = ipV6["addr"].split("%")[0]
 
         img = Image.frombytes('RGB', sct_img.size, sct_img.rgb)
         imgByteArr = io.BytesIO()
@@ -55,8 +62,16 @@ def TakeScreenShot():
         ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA512"}).text = hashlib.sha512(imgByteArr.getvalue()).hexdigest()
         ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA3_512"}).text = hashlib.sha3_512(imgByteArr.getvalue()).hexdigest()
         ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA256"}).text = hashlib.sha256(imgByteArr.getvalue()).hexdigest()
-        with open("test.xml", "w") as f:
-            f.write(BeautifulSoup(ET.tostring(root), "xml").prettify())
+
+        #######Test
+        msg = MIMEMultipart()
+        imgMime = MIMEImage(imgByteArr.getvalue())
+        msg.attach(imgMime)
+        TextMime = MIMEText(BeautifulSoup(ET.tostring(root), "xml").prettify())
+        msg.attach(TextMime)
+
+        with open("test.sse", "wb") as f:
+            f.write(msg.as_bytes())
 
 
 TakeScreenShot()
