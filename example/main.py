@@ -58,10 +58,22 @@ def TakeScreenShot():
         imgByteArr = io.BytesIO()
         img.save(imgByteArr, format='PNG')
         #imgByteArr.getvalue()
-        ET.SubElement(root, "Pic_Checksum", {"Typ": "MD5"}).text = hashlib.md5(imgByteArr.getvalue()).hexdigest()
-        ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA512"}).text = hashlib.sha512(imgByteArr.getvalue()).hexdigest()
-        ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA3_512"}).text = hashlib.sha3_512(imgByteArr.getvalue()).hexdigest()
-        ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA256"}).text = hashlib.sha256(imgByteArr.getvalue()).hexdigest()
+        try:
+            ET.SubElement(root, "Pic_Checksum", {"Typ": "MD5"}).text = hashlib.md5(imgByteArr.getvalue()).hexdigest()
+        except AttributeError:
+            pass
+        try:
+            ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA512"}).text = hashlib.sha512(imgByteArr.getvalue()).hexdigest()
+        except AttributeError:
+            pass
+        try:
+            ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA3_512"}).text = hashlib.sha3_512(imgByteArr.getvalue()).hexdigest()
+        except AttributeError:
+            pass
+        try:
+            ET.SubElement(root, "Pic_Checksum", {"Typ": "SHA256"}).text = hashlib.sha256(imgByteArr.getvalue()).hexdigest()
+        except AttributeError:
+            pass
 
         #######Test
         msg = MIMEMultipart()
