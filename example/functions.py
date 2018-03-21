@@ -62,7 +62,11 @@ def GetHostsFile():
 
     with open(HostFilePath, "r") as myfile:
         for line in myfile.readlines():
-            worker = line.replace("\n", "")
+            if line.startswith("#"):
+                continue
+            worker = line.split("#")[0].replace("\n", "")
+            if worker == "":
+                continue
             worker = " ".join(worker.split())
             worker = worker.split(" ",1)
             data[worker[0]]=worker[1].split(" ")
