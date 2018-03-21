@@ -1,0 +1,10 @@
+beautifulsoup4==4.6.0
+bs4==0.0.1
+dnspython==1.15.0
+lxml==4.2.0
+mss==3.1.2
+netifaces==0.10.6
+ntplib==0.3.3
+Pillow==5.0.0
+python-hosts==0.4.1
+win-inet-pton==1.0.1
