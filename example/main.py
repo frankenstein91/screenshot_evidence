@@ -25,9 +25,9 @@ def TakeScreenShot():
         ET.SubElement(root,"HostName").text = HostName
         PicID = str(uuid.uuid1()).replace("-","")
         FileFunctionsPY = open("functions.py", "r")
-        hmacFunctionsPY = hmac.new(PicID.encode(), msg=FileFunctionsPY.read().encode(), digestmod=hashlib.sha3_512).hexdigest()
+        hmacFunctionsPY = hmac.new(PicID.encode(), msg=FileFunctionsPY.read().encode(), digestmod=hashlib.sha512).hexdigest()
         FileMainPY = open("main.py", "r")
-        hmacMainPY = hmac.new(PicID.encode(), msg=FileMainPY.read().encode(),digestmod=hashlib.sha3_512).hexdigest()
+        hmacMainPY = hmac.new(PicID.encode(), msg=FileMainPY.read().encode(),digestmod=hashlib.sha512).hexdigest()
         xml_Software = ET.SubElement(root, "Software", {"Name": "Python Demo SSE", "Version": version})
         ET.SubElement(xml_Software, "File", {"Name": "functions.py"}).text = hmacFunctionsPY
         ET.SubElement(xml_Software, "File", {"Name": "main.py"}).text = hmacMainPY
