@@ -24,19 +24,21 @@ def getNetInfos():
 
     for interface in interfaces:
         temp = {}
+        temp["ipV4"] = []
+        temp["ipV6"] = []
         try:
             for out in netifaces.ifaddresses(interface)[netifaces.AF_INET]:
                 temp2 = {}
                 temp2["addr"] = out["addr"]
                 temp2["netmask"] = out["netmask"]
-                temp["ipV4"] = temp2
+                temp["ipV4"].append(temp2)
         except KeyError:
             print("someLog: no ipV4 on interface")
         try:
             for out in netifaces.ifaddresses(interface)[netifaces.AF_INET6]:
                 temp2 = {}
                 temp2["addr"] = out["addr"]
-                temp["ipV6"] = temp2
+                temp["ipV6"].append(temp2)
         except KeyError:
             print("someLog: no ipV6 on interface")
 
