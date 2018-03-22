@@ -70,3 +70,8 @@ That works because people developed methods, so that signing data is almost impo
 
 The problem with our screenshots is, that is not only needed to be sure, that the signature was createt with a certain private key, also a proof of the fact, that the image (and meta data) hasn't changed since the screenshot was taken, is needed. Otherwise somebody could modify a screenshot and would just sign it again.
 Of course you can prevent that with software, but that would be just a impediment, you would not make it impossible.
+
+## Test software
+You will find a Python application in directory "example". It creates a screenshot like described with our "First approuch".
+This Python application example currently runs on Windows and Linux systems.
+To open the created .sse file, rename it to .msg (for Evolution Mail client) or .eml (for Mozilla Thunderbird).
