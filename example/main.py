@@ -56,7 +56,7 @@ def TakeScreenShot():
 
         img = Image.frombytes('RGB', sct_img.size, sct_img.rgb)
         imgByteArr = io.BytesIO()
-        img.save(imgByteArr, format='PNG')
+        img.save(imgByteArr, format='PNG', optimize=True)
         # imgByteArr.getvalue()
         try:
             ET.SubElement(root, "Pic_Checksum", {"Typ": "MD5"}).text = hashlib.md5(imgByteArr.getvalue()).hexdigest()
