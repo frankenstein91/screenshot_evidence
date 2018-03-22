@@ -65,3 +65,8 @@ Eine in Container enthaltene Sequenznummer (Anzahl Bilder seit Programmstart), t
 Mit den aktuell herkömmlichen Verfahren der Kryptografie (insbesondere der asymmetrischen) ist es möglich, sichere Signaturen zu erstellen, mit denen ein Empfänger den unveränderten Empfang von Daten sicherstellen kann, insofern die Daten vom Empfänger signiert wurden. Eine digitale Signaturkopie ist nahezu unmöglich, wenn man nicht im Besitzt des privaten Schlüssels ist. Andersherum ist die Kenntnis des privaten Schlüssels für das Verifizieren nicht notwendig.
 Das Problem bei Bildschirmfotos besteht darin, dass nicht nur sicherstellen werden muss, dass der Signierende im Besitzt des privaten Schlüssels ist. Außerdem muss sichergestellt werden, dass das Bildschirmfoto (und die zugehörigen Metadaten) auch vom Besitzer des privaten Schlüssels nicht nachträglich geändert wurde. Denn sonst könnte der Besitzer des privaten Schlüssels das Bild bzw. die Metadaten verändern, und anschließend unerkannt einfach neu signieren.
 Natürlich kann so etwas von der erstellenden Software verboten werden, doch damit ist eine Fälschung ja nicht ausgeschlossen.
+
+## Test Software
+Im Verzeichnis example finden Sie eine Python-Anwendung die einen Screenshot nach dem Vorschlag erstellt.
+Um die erstellte SSE-Datei öffnen zu können, ändern sie die Endung auf msg (für Evolution Mail) oder eml (für Thunderbird).
+Die Anwendung läuft aktuell auf Windows und Linux.
