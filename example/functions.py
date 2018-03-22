@@ -1,0 +1,81 @@
+import ntplib, netifaces, platform
+import time
+import dns.resolver
+
+
+def getTimes():
+    c = ntplib.NTPClient()
+    servers = ["meinekiste.de", "zepto.mcl.gg", "shout.ovh", "time-a-g.nist.gov", "time-b-g.nist.gov",
+               "time-a-wwv.nist.gov", "time-a-b.nist.gov", "0.pool.ntp.org"]
+    timeanswers = {}
+    timeinfo = {}
+    for server in servers:
+        try:
+            response = c.request(server, version=3)
+            timeanswers[server] = response.tx_timestamp
+        except ntplib.NTPException:
+            print("some log for Timeout")
+    timeinfo["times"] = timeanswers
+    timeinfo["timezone"] = time.strftime("%Z")
+    return timeinfo
+
+
+def getNetInfos():
+    interfaces = netifaces.interfaces()
+    ifadresses = {}
+
+    for interface in interfaces:
+        temp = {}
+        temp["ipV4"] = []
+        temp["ipV6"] = []
+        try:
+            for out in netifaces.ifaddresses(interface)[netifaces.AF_INET]:
+                temp2 = {}
+                temp2["addr"] = out["addr"]
+                temp2["netmask"] = out["netmask"]
+                temp["ipV4"].append(temp2)
+        except KeyError:
+            print("someLog: no ipV4 on interface")
+        try:
+            for out in netifaces.ifaddresses(interface)[netifaces.AF_INET6]:
+                temp2 = {}
+                temp2["addr"] = out["addr"]
+                temp["ipV6"].append(temp2)
+        except KeyError:
+            print("someLog: no ipV6 on interface")
+
+        temp["mac"] = netifaces.ifaddresses(interface)[netifaces.AF_LINK][0]["addr"]
+        ifadresses[interface] = temp
+
+    return ifadresses
+
+
+def getHostname():
+    return platform.node()
+
+
+def GetDNSServers():
+    local_resolver = dns.resolver.Resolver()
+    return local_resolver.nameservers
+
+
+def GetHostsFile():
+    HostFilePath = ""
+    data = {}
+    if platform.system() == "Linux":
+        HostFilePath = "/etc/hosts"
+    elif platform.system() == "Windows":
+        HostFilePath = "C:/Windows/System32/drivers/etc/hosts"
+
+    with open(HostFilePath, "r") as myfile:
+        for line in myfile.readlines():
+            if line.startswith("#"):
+                continue
+            worker = line.split("#")[0].replace("\n", "")
+            if worker == "":
+                continue
+            worker = " ".join(worker.split())
+            worker = worker.split(" ", 1)
+            data[worker[0]] = worker[1].split(" ")
+
+    return data
