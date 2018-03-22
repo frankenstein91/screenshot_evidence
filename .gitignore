@@ -2,3 +2,7 @@
 venv/
 
 \.idea/
+
+example/test\.sse
+
+example/__pycache__/
