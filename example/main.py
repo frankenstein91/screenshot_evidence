@@ -79,8 +79,12 @@ def TakeScreenShot():
         msg = MIMEMultipart()
         imgMime = MIMEImage(imgByteArr.getvalue())
         msg.attach(imgMime)
-        TextMime = MIMEText(BeautifulSoup(ET.tostring(root), "xml").prettify())
+        XMLText = BeautifulSoup(ET.tostring(root), "xml").prettify()
+        TextMime = MIMEText(XMLText)
+        XMLhash = hashlib.sha512(XMLText.encode()).hexdigest() + "|" + hashlib.md5(XMLText.encode()).hexdigest()
+        TextMime2 = MIMEText(XMLhash)
         msg.attach(TextMime)
+        msg.attach(TextMime2)
 
         with open("test.sse", "wb") as f:
             f.write(msg.as_bytes())
