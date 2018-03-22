@@ -1,8 +1,6 @@
-import io
-import uuid
-import hmac, hashlib, base64
+#!/usr/bin/env python3
+import io, uuid, hmac, hashlib, mss
 from functions import *
-import mss
 from PIL import Image
 import xml.etree.cElementTree as ET
 from bs4 import BeautifulSoup
