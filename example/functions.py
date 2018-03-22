@@ -2,9 +2,11 @@ import ntplib, netifaces, platform
 import time
 import dns.resolver
 
+
 def getTimes():
     c = ntplib.NTPClient()
-    servers = ["meinekiste.de", "zepto.mcl.gg", "shout.ovh", "time-a-g.nist.gov", "time-b-g.nist.gov", "time-a-wwv.nist.gov", "time-a-b.nist.gov", "0.pool.ntp.org"]
+    servers = ["meinekiste.de", "zepto.mcl.gg", "shout.ovh", "time-a-g.nist.gov", "time-b-g.nist.gov",
+               "time-a-wwv.nist.gov", "time-a-b.nist.gov", "0.pool.ntp.org"]
     timeanswers = {}
     timeinfo = {}
     for server in servers:
@@ -16,6 +18,7 @@ def getTimes():
     timeinfo["times"] = timeanswers
     timeinfo["timezone"] = time.strftime("%Z")
     return timeinfo
+
 
 def getNetInfos():
     interfaces = netifaces.interfaces()
@@ -46,12 +49,15 @@ def getNetInfos():
 
     return ifadresses
 
+
 def getHostname():
     return platform.node()
+
 
 def GetDNSServers():
     local_resolver = dns.resolver.Resolver()
     return local_resolver.nameservers
+
 
 def GetHostsFile():
     HostFilePath = ""
@@ -69,7 +75,7 @@ def GetHostsFile():
             if worker == "":
                 continue
             worker = " ".join(worker.split())
-            worker = worker.split(" ",1)
-            data[worker[0]]=worker[1].split(" ")
+            worker = worker.split(" ", 1)
+            data[worker[0]] = worker[1].split(" ")
 
     return data
