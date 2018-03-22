@@ -1,7 +1,6 @@
 import ntplib, netifaces, platform
 import time
 import dns.resolver
-from python_hosts import Hosts, HostsEntry
 
 def getTimes():
     c = ntplib.NTPClient()
@@ -59,6 +58,8 @@ def GetHostsFile():
     data = {}
     if platform.system() == "Linux":
         HostFilePath = "/etc/hosts"
+    elif platform.system() == "Windows":
+        HostFilePath = "C:/Windows/System32/drivers/etc/hosts"
 
     with open(HostFilePath, "r") as myfile:
         for line in myfile.readlines():
