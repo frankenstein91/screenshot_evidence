@@ -1,6 +1,30 @@
 import ntplib, netifaces, platform
 import time
 import dns.resolver
+import tempfile,os,re
+
+def getCounter(reset=False):
+    Path = os.path.join(tempfile.gettempdir(),"SSE.counter")
+    if reset or not os.path.isfile(Path):
+        Counter = 0
+    else:
+        TempCounter = 0
+        with open(Path,"r") as f:
+            try:
+                TempCounter = int(re.sub("[^0-9]", "", f.readline().strip()))
+            except:
+                TempCounter = 0
+
+            try:
+                TempCounter += 1
+                TempCounter -= 1
+            except TypeError:
+                TempCounter = 0
+    Counter = TempCounter
+    Counter += 1
+    with open(Path,"w") as f:
+        f.write(str(Counter))
+    return Counter
 
 
 def getTimes():
