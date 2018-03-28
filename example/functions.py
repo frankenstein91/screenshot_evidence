@@ -6,7 +6,7 @@ import tempfile,os,re
 def getCounter(reset=False):
     Path = os.path.join(tempfile.gettempdir(),"SSE.counter")
     if reset or not os.path.isfile(Path):
-        Counter = 0
+        TempCounter = 0
     else:
         TempCounter = 0
         with open(Path,"r") as f:
