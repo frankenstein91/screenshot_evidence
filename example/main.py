@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-version = "Test 0.3"
+version = "Test 0.4"
 
 def TakeScreenShot():
     with mss.mss() as sct:
