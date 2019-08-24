@@ -1,6 +1,6 @@
 # Digitale Screenshots mit Echtheitsnachweis
 
-<table border="0"><tr>  <td><a href="https://gittron.me/bots/0xf5fecdad30cae3a9f8664ef783b20e84"><img src="https://s3.amazonaws.com/od-flat-svg/0xf5fecdad30cae3a9f8664ef783b20e84.png" alt="gittron" width="50"/></a></td><td><a href="https://gittron.me/bots/0xf5fecdad30cae3a9f8664ef783b20e84">SUPPORT US WITH GITTRON</a></td></tr></table>
+
 
 ## Autoren
 * Menzel, Erik
